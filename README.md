@@ -7,6 +7,7 @@
 4. [訓練設置](#訓練設置)
 5. [結果分析](#結果分析)
 6. [後續改進](#後續改進)
+7. [參考資料](#參考資料)
 ## 資料預處理
 
 1. 讀取訓練集，將“id”與“sale_day”整行丟棄，然後將“sale_month”與“sale_yr”做 Onehot encoding，並丟棄“年”、“月”兩行，把沒有意義的數字轉換為有意義的數字。
@@ -147,3 +148,10 @@ change_cross_val_score: 125171.3211
 ## 後續改進
 
 未來可以對訓練集做進一步的特徵分析以及特徵篩選，濾除掉較離群的特徵，讓模型的預測能力得到近一步的提升。
+
+## 參考資料
+
+1. ##### 實戰：使用PyTorch構建神經網絡進行房價預測 @[ilulaoshi](https://juejin.cn/post/6885614731982766088)
+2. ##### Tatanic機器學習模型stacking整理 @[Morris Tai](https://medium.com/@morris_tai/tatanic%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%A8%A1%E5%9E%8Bstacking%E6%95%B4%E7%90%86-523884f3bb98)
+3. ##### 如何為你的回歸問題選擇最合適的機器學習方法？ @[何从庆](http://www.python88.com/topic/31695)
+4. ##### ML100Days-030 特徵選擇 @[ChengChe-Hsieh](https://medium.com/@z1334879568/ml100days-030-%E7%89%B9%E5%BE%B5%E9%81%B8%E6%93%87-d2a73ecee6bb)
