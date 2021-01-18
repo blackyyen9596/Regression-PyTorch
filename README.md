@@ -1,13 +1,23 @@
-[![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=3629422&assignment_repo_type=AssignmentRepo)
+# Regression-PyTorch
+
+#### 此程式碼由本人獨自閱讀參考文獻撰寫，部分程式碼來自參考文獻中，更完整原始碼請至本人之個人GitHub網站@[Chen-Yen Chang, BlackyYen](https://github.com/BlackyYen)下載。
+#### 程式碼與以下圖片部分是引用自參考文獻，如有侵權請立即告知，會立即刪除。謝謝您！
 ## 目錄
 
-1. [資料預處理](#資料預處理)
-2. [流程圖](#流程圖)
-3. [模型架構](#模型架構)
-4. [訓練設置](#訓練設置)
-5. [結果分析](#結果分析)
-6. [後續改進](#後續改進)
-7. [參考資料](#參考資料)
+1. [Kaggle結果](#Kaggle結果)
+2. [資料預處理](#資料預處理)
+3. [流程圖](#流程圖)
+4. [模型架構](#模型架構)
+5. [訓練設置](#訓練設置)
+6. [結果分析](#結果分析)
+7. [後續改進](#後續改進)
+8. [參考資料](#參考資料)
+
+## Kaggle結果
+
+在Kaggle競賽表現上私人排行榜拿到了第五名61898.50分。 
+![private_leaderboard](./images/readme/private_leaderboard.JPG) 
+
 ## 資料預處理
 
 1. 讀取訓練集，將“id”與“sale_day”整行丟棄，然後將“sale_month”與“sale_yr”做 Onehot encoding，並丟棄“年”、“月”兩行，把沒有意義的數字轉換為有意義的數字。
@@ -75,7 +85,7 @@ sale_yr2         0.007752
 sns.heatmap(corr, xticklabels=False, yticklabels=False)
 plt.show()
 ```  
-![heatmap](./images/heatmap-readme.jpeg)   
+![heatmap](./images/readme/heatmap.jpeg)   
 3. 將處理過的資料刪除刪除“price”，並使用cross_val_score與簡單的回歸模型訓練，在這裡共切割成十等分進行訓練驗證，並得到評估指標mae的分數。
 ``` 
 # 刪除 price
@@ -127,32 +137,32 @@ change_cross_val_score: 125171.3211
 ## 流程圖
 
 1. 流程圖如下所示：  
-![architecture](./images/architecture-readme.jpg)
+![architecture](./images/readme/architecture.jpg)
 2. 本次利用多個多個弱回歸學習器結合成一個強回歸學習器的概念，將五個回歸器利用DNN結合在一起。五個回歸學習器分別為XGBoost、AdaBoost、Random Forest、KNN及SVM。
 3. 訓練集、驗證集及測試集利用Stacking的方法生成出來，K-fold設置為10。
 ## 模型架構
 
 1. 利用 torchsummary 將模型參數顯示出來。  
-![model](./images/model-readme.JPG)
+![model](./images/readme/model.JPG)
 2. 利用 tensorboard 將模型可視化。  
-![tensorboard](./images/tensorboard-readme.JPG)
+![tensorboard](./images/readme/tensorboard.JPG)
 ## 訓練設置
 
 1. 損失函數選擇使用SmoothL1Loss，優化器選擇Adam，學習率初始值設置0.1，並使用CosineAnnealingLR學習率下降法，學習率最終降至0.01，共訓練200個Epochs。
 ## 結果分析
 
 1. 訓練損失最終下降至6.33e-4，而驗證損失最終下降至5.86e-4。  
-![loss](./images/loss-readme.jpg)
+![loss](./images/readme/loss.jpg)
 2. 使用CosineAnnealingLR學習率下降法，從0.1降至0.01。  
-![lr](./images/lr-readme.jpg)
+![lr](./images/readme/lr.jpg)
 ## 後續改進
 
 未來可以對訓練集做進一步的特徵分析以及特徵篩選，濾除掉較離群的特徵，讓模型的預測能力得到近一步的提升。
 
 ## 參考資料
 
-1. ##### 實戰：使用PyTorch構建神經網絡進行房價預測 @[ilulaoshi](https://juejin.cn/post/6885614731982766088)
-2. ##### Tatanic機器學習模型stacking整理 @[Morris Tai](https://medium.com/@morris_tai/tatanic%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%A8%A1%E5%9E%8Bstacking%E6%95%B4%E7%90%86-523884f3bb98)
-3. ##### 如何為你的回歸問題選擇最合適的機器學習方法？ @[何从庆](http://www.python88.com/topic/31695)
-4. ##### ML100Days-030 特徵選擇 @[ChengChe-Hsieh](https://medium.com/@z1334879568/ml100days-030-%E7%89%B9%E5%BE%B5%E9%81%B8%E6%93%87-d2a73ecee6bb)
-5. ##### 數據挖掘類比賽常用模型 @[浅蓝苜蓿 QLMX](https://github.com/QLMX/data_mining_models)
+#### [1] 實戰：使用PyTorch構建神經網絡進行房價預測 @[ilulaoshi](https://juejin.cn/post/6885614731982766088)
+#### [2] Tatanic機器學習模型stacking整理 @[Morris Tai](https://medium.com/@morris_tai/tatanic%E6%A9%9F%E5%99%A8%E5%AD%B8%E7%BF%92%E6%A8%A1%E5%9E%8Bstacking%E6%95%B4%E7%90%86-523884f3bb98)
+#### [3] 如何為你的回歸問題選擇最合適的機器學習方法？ @[何从庆](http://www.python88.com/topic/31695)
+#### [4] ML100Days-030 特徵選擇 @[ChengChe-Hsieh](https://medium.com/@z1334879568/ml100days-030-%E7%89%B9%E5%BE%B5%E9%81%B8%E6%93%87-d2a73ecee6bb)
+#### [5] 數據挖掘類比賽常用模型 @[浅蓝苜蓿 QLMX](https://github.com/QLMX/data_mining_models)
